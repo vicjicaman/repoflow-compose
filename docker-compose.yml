@@ -1,25 +1,16 @@
 version: '3'
 services:
   app:
-    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/repoflow-container-server:link
-    env_file:
-     - .env
-    environment:
-     - SERVICE_PORT=5040
-     - GRAPHQL_URL=http://container-dependencies.graph.com:4040/graphql
-     - EVENTS_URL=http://container-dependencies.graph.com:4040/events
+    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/repoflow-container-server:linked
     ports:
-     - "5040:5040"
+     - "${SERVICE_PORT}:${SERVICE_PORT}"
   graph:
-    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/repoflow-container-graph:link
-    env_file:
-     - .env
+    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/repoflow-container-graph:linked
     volumes:
      - /home/victor/nodeflow/workspace:/home/node/workspace
      - /home/victor/.gitconfig:/home/node/.gitconfig
      - /home/victor/.ssh:/home/node/.ssh
     environment:
-     - SERVICE_PORT=4040
      - REPOFLOW_WORKSPACE=/home/node/workspace
     ports:
-     - "4040:4040"
+     - "${SERVICE_PORT}:${SERVICE_PORT}"
