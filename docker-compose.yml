@@ -2,15 +2,38 @@ version: '3'
 services:
   app:
     image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/repoflow-container-server:linked
+    volumes:
+     - ~/nodeflow/workspace:/home/node/workspace
+    environment:
+     - SERVICE_HOST=app.repoflow.local
+     - SERVICE_PORT=5050
+     - REPOFLOW_WORKSPACE=/home/node/workspace
+     - GRAPHQL_URL=http://graph.repoflow.local:4040/graphql
+     - EVENTS_URL=http://graph.repoflow.local:4040/events
+    hostname: app.repoflow.local
     ports:
-     - "${SERVICE_PORT}:${SERVICE_PORT}"
+     - 5050:5050
+    networks:
+      network-repoflow: {aliases: [app.repoflow.local]}
+    extra_hosts:
+        - 'localbuild:${DOCKERHOST}'
   graph:
     image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/repoflow-container-graph:linked
     volumes:
-     - /home/victor/nodeflow/workspace:/home/node/workspace
-     - /home/victor/.gitconfig:/home/node/.gitconfig
-     - /home/victor/.ssh:/home/node/.ssh
+     - ~/nodeflow/workspace:/home/node/workspace
+     - ~/.gitconfig:/home/node/.gitconfig
+     - ~/.ssh:/home/node/.ssh
     environment:
+     - SERVICE_HOST=graph.repoflow.local
+     - SERVICE_PORT=4040
      - REPOFLOW_WORKSPACE=/home/node/workspace
+    hostname: graph.repoflow.local
     ports:
-     - "${SERVICE_PORT}:${SERVICE_PORT}"
+     - 4040:4040
+    networks:
+      network-repoflow: {aliases: [graph.repoflow.local]}
+    extra_hosts:
+        - 'localbuild:${DOCKERHOST}'
+networks:
+  network-repoflow:
+    external: true
