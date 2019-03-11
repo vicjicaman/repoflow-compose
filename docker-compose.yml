@@ -6,13 +6,13 @@ services:
      - ~/nodeflow/workspace:/home/node/workspace
     environment:
      - SERVICE_HOST=app.repoflow.local
-     - SERVICE_PORT=5050
+     - SERVICE_PORT=5058
      - REPOFLOW_WORKSPACE=/home/node/workspace
-     - GRAPHQL_URL=http://graph.repoflow.local:4040/graphql
-     - EVENTS_URL=http://graph.repoflow.local:4040/events
+     - GRAPHQL_URL=http://graph.repoflow.local:4048/graphql
+     - EVENTS_URL=http://graph.repoflow.local:4048/events
     hostname: app.repoflow.local
     ports:
-     - 5050:5050
+     - 5058:5058
     networks:
       network-repoflow: {aliases: [app.repoflow.local]}
     extra_hosts:
@@ -25,11 +25,11 @@ services:
      - ~/.ssh:/home/node/.ssh
     environment:
      - SERVICE_HOST=graph.repoflow.local
-     - SERVICE_PORT=4040
+     - SERVICE_PORT=4048
      - REPOFLOW_WORKSPACE=/home/node/workspace
     hostname: graph.repoflow.local
     ports:
-     - 4040:4040
+     - 4048:4048
     networks:
       network-repoflow: {aliases: [graph.repoflow.local]}
     extra_hosts:
