@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: repoflow/repoflow-container-server:1.70.1-master
+    image: repoflow/repoflow-container-server:1.70.1-public-containers-prod
     volumes:
      - ~/nodeflow/workspace:/home/node/workspace
     environment:
@@ -18,7 +18,7 @@ services:
     extra_hosts:
         - 'localbuild:${DOCKERHOST}'
   graph:
-    image: repoflow/repoflow-container-graph:1.70.1-master
+    image: repoflow/repoflow-container-graph:1.70.1-public-containers-prod
     volumes:
      - ~/nodeflow/workspace:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
