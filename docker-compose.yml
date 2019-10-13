@@ -2,12 +2,9 @@ version: '3'
 services:
   web:
     image: repoflow/repoflow-container-server:1.70.2-master
-    volumes:
-     - ~/nodeflow/workspace:/home/node/workspace
     environment:
      - REPOFLOW_WEB_SERVICE_HOST=web.repoflow.local
      - REPOFLOW_WEB_SERVICE_PORT=5050
-     - REPOFLOW_WORKSPACE=/home/node/workspace
      - REPOFLOW_GRAPH_URL=http://graph.repoflow.local:4050/graphql
      - REPOFLOW_EVENTS_URL=http://graph.repoflow.local:4050/events
     hostname: web.repoflow.local
@@ -20,7 +17,7 @@ services:
   graph:
     image: repoflow/repoflow-container-graph:1.70.2-master
     volumes:
-     - ~/nodeflow/workspace:/home/node/workspace
+     - ~/repoflow/workspace:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
      - ~/.ssh:/home/node/.ssh
     environment:
