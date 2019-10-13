@@ -12,12 +12,10 @@ services:
      - 5050:5050
     networks:
       network-repoflow: {aliases: [web.repoflow.local]}
-    extra_hosts:
-        - 'localbuild:${DOCKERHOST}'
   graph:
     image: repoflow/repoflow-container-graph:1.70.2-master
     volumes:
-     - ~/repoflow/workspace:/home/node/workspace
+     - ./workspace:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
      - ~/.ssh:/home/node/.ssh
     environment:
