@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: repoflow/repoflow-container-server:1.70.2-master
+    image: repoflow/repoflow-container-server:1.70.0-compose-v2-prod
     environment:
      - REPOFLOW_WEB_SERVICE_HOST=web.repoflow.local
      - REPOFLOW_WEB_SERVICE_PORT=5050
@@ -15,7 +15,7 @@ services:
     extra_hosts:
         - 'localbuild:${DOCKERHOST}'
   graph:
-    image: repoflow/repoflow-container-graph:1.70.2-master
+    image: repoflow/repoflow-container-graph:1.70.0-compose-v2-prod
     volumes:
      - ~/repoflow/workspace:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
