@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: repoflow/repoflow-container-server:1.70.0-compose-v2-prod
+    image: repoflow/repoflow-container-server:1.70.3-master
     environment:
      - NODE_ENV=production
      - REPOFLOW_WEB_SERVICE_HOST=web.repoflow.local
@@ -14,7 +14,7 @@ services:
     networks:
       network-repoflow: {aliases: [web.repoflow.local]}
   graph:
-    image: repoflow/repoflow-container-graph:1.70.0-compose-v2-prod
+    image: repoflow/repoflow-container-graph:1.70.3-master
     volumes:
      - ./workspace:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
