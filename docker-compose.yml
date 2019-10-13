@@ -3,6 +3,7 @@ services:
   web:
     image: repoflow/repoflow-container-server:1.70.0-compose-v2-prod
     environment:
+     - NODE_ENV=production
      - REPOFLOW_WEB_SERVICE_HOST=web.repoflow.local
      - REPOFLOW_WEB_SERVICE_PORT=5050
      - REPOFLOW_GRAPH_URL=http://graph.repoflow.local:4050/graphql
@@ -19,6 +20,7 @@ services:
      - ~/.gitconfig:/home/node/.gitconfig
      - ~/.ssh:/home/node/.ssh
     environment:
+     - NODE_ENV=production
      - REPOFLOW_GRAPH_SERVICE_HOST=graph.repoflow.local
      - REPOFLOW_GRAPH_SERVICE_PORT=4050
      - REPOFLOW_WORKSPACE=/home/node/workspace
